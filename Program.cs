@@ -143,5 +143,26 @@ Console.WriteLine("Ingrese el texto que desea concatenar con el anterior: ");
 string texto2 = Console.ReadLine();
 // concateno los dos texto con una funcion
 string texConcatenado = string.Join(" ",textoOriginal, texto2);
-
 Console.WriteLine($"Textos concatenados : {texConcatenado}");
+
+//aca extraigo una parte del segundo texto de lo que el usuario desea y verifico que lo que ingresa esta bien
+int inicio, cantidad;
+bool controlInicio, controlCant;
+do
+{    
+Console.WriteLine("Ingrese el índice inicial para extraer del texto:");
+controlInicio = int.TryParse(Console.ReadLine(), out inicio);
+
+Console.WriteLine("Ingrese cuántos caracteres quiere extraer:");
+controlCant = int.TryParse(Console.ReadLine(), out cantidad);
+} while (!controlCant && !controlInicio);
+// lo que hago aca es sin contemplar los espacios, o sea que puede que el indice que ingrese el usuario sea un espacio vacio 
+if (inicio+cantidad <= texto2.Length)
+{
+    string subcadena = texto2.Substring(inicio, cantidad);
+    Console.WriteLine($"La subcadena es: {subcadena}");
+}else
+{
+    Console.WriteLine("ERROR. La cantidad de caracteres que pedis se excede");
+}
+
