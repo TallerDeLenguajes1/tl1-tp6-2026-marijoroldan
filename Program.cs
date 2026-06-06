@@ -130,39 +130,85 @@
 /////////////////////// PUNTO 4 /////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////
 
-//le pido al usuario que ingrese un texto
-Console.WriteLine("Ingrese un texto: ");
-string textoOriginal = Console.ReadLine();
-// reemplazo los espacios del texto original sino el length me va a contar los espacios
-string textoSinEspacios = textoOriginal.Replace(" ","");
-int longitud = textoSinEspacios.Length;
+// //le pido al usuario que ingrese un texto
+// Console.WriteLine("Ingrese un texto: ");
+// string textoOriginal = Console.ReadLine();
+// // reemplazo los espacios del texto original sino el length me va a contar los espacios
+// string textoSinEspacios = textoOriginal.Replace(" ","");
+// int longitud = textoSinEspacios.Length;
 
-Console.WriteLine($"El texto ingresado es: {textoOriginal} \nLa cantidad de caracteres es: {longitud}");
-// aca le pido al usuario que ingrese otra cadena de caracteres
-Console.WriteLine("Ingrese el texto que desea concatenar con el anterior: ");
-string texto2 = Console.ReadLine();
-// concateno los dos texto con una funcion
-string texConcatenado = string.Join(" ",textoOriginal, texto2);
-Console.WriteLine($"Textos concatenados : {texConcatenado}");
+// Console.WriteLine($"El texto ingresado es: {textoOriginal} \nLa cantidad de caracteres es: {longitud}");
+// // aca le pido al usuario que ingrese otra cadena de caracteres
+// Console.WriteLine("Ingrese el texto que desea concatenar con el anterior: ");
+// string texto2 = Console.ReadLine();
+// // concateno los dos texto con una funcion
+// string texConcatenado = string.Join(" ",textoOriginal, texto2);
+// Console.WriteLine($"Textos concatenados : {texConcatenado}");
 
-//aca extraigo una parte del segundo texto de lo que el usuario desea y verifico que lo que ingresa esta bien
-int inicio, cantidad;
-bool controlInicio, controlCant;
-do
-{    
-Console.WriteLine("Ingrese el índice inicial para extraer del texto:");
-controlInicio = int.TryParse(Console.ReadLine(), out inicio);
+// //aca extraigo una parte del segundo texto de lo que el usuario desea y verifico que lo que ingresa esta bien
+// int inicio, cantidad;
+// bool controlInicio, controlCant;
+// do
+// {    
+// Console.WriteLine("Ingrese el índice inicial para extraer del texto:");
+// controlInicio = int.TryParse(Console.ReadLine(), out inicio);
 
-Console.WriteLine("Ingrese cuántos caracteres quiere extraer:");
-controlCant = int.TryParse(Console.ReadLine(), out cantidad);
-} while (!controlCant && !controlInicio);
-// lo que hago aca es sin contemplar los espacios, o sea que puede que el indice que ingrese el usuario sea un espacio vacio 
-if (inicio+cantidad <= texto2.Length)
+// Console.WriteLine("Ingrese cuántos caracteres quiere extraer:");
+// controlCant = int.TryParse(Console.ReadLine(), out cantidad);
+// } while (!controlCant && !controlInicio);
+// // lo que hago aca es sin contemplar los espacios, o sea que puede que el indice que ingrese el usuario sea un espacio vacio 
+// if (inicio+cantidad <= texto2.Length)
+// {
+//     string subcadena = texto2.Substring(inicio, cantidad);
+//     Console.WriteLine($"La subcadena es: {subcadena}");
+// }else
+// {
+//     Console.WriteLine("ERROR. La cantidad de caracteres que pedis se excede");
+// }
+
+
+// *********************************************************************************
+
+// double resulta= 12.3456;
+// Console.WriteLine("La suma es: " + resulta.ToString("F2")); 
+// // Controlar el formato (darle estilo): Si tenés un resultado con muchos decimales (ej: 10.3333333), el .ToString() te permite darle formato para que se vea más prolijo.
+// Si hacés resultado.ToString("F2"), le estás diciendo: "Convertí este número a texto, pero redondealo a 2 decimales".
+// Si hacés resultado.ToString("N2"), le estás diciendo: "Convertilo a texto, redondealo a 2 decimales y agregale separadores de miles".
+// Concatenación limpia: A veces, cuando concatenás muchas cosas con el operador +, el código se vuelve difícil de leer y propenso a errores de tipo. Convertir manualmente el resultado a texto con .ToString() antes de unirlo con otras frases hace que el código sea más explícito y fácil de depurar.
+
+//********************************************
+
+// foreach (char letra in textoOriginal)
+// {
+//     Console.WriteLine(letra);
+// }
+
+// Console.WriteLine("Qué palabra desea buscar?");
+// string buscar = Console.ReadLine();
+
+// if (textoOriginal.ToLower().Contains(buscar)) // toupper() sirve para mayusculas
+// {
+//     Console.WriteLine("La palabra si esta!!!");
+// }else
+// {
+//     Console.WriteLine("No encontre la palabra :(");
+// }
+
+//********************************
+Console.WriteLine("Ingresar una lista de lo que quiera pero separado por -");
+string lista = Console.ReadLine();
+string[] listaSeparada = lista.Split('-');
+foreach (string palabras in listaSeparada)
 {
-    string subcadena = texto2.Substring(inicio, cantidad);
-    Console.WriteLine($"La subcadena es: {subcadena}");
-}else
-{
-    Console.WriteLine("ERROR. La cantidad de caracteres que pedis se excede");
+    Console.WriteLine(palabras);
 }
 
+string texto = "manzana,banana-pera/uva";
+
+// Definimos un arreglo con todos los separadores que queremos detectar
+char[] separadores = { ',', '-', '/' };
+
+// Pasamos ese arreglo al Split
+string[] frutas = texto.Split(separadores);
+
+// Ahora 'frutas' contiene: ["manzana", "banana", "pera", "uva"]
